@@ -1,43 +1,675 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="E-Takraar - Online cybercrime reporting and harassment classifier platform" />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <title>E-Takraar</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary: #3a0ca3;
+      --primary-dark: #240046;
+      --secondary: #4361ee;
+      --accent: #7209b7;
+      --light: #f8f9fa;
+      --dark: #212529;
+      --success: #4cc9f0;
+      --danger: #f72585;
+      --warning: #f8961e;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--dark);
+      background-color: #f6f8fa;
+    }
+    
+    .navbar {
+      background-color: var(--primary);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .navbar-brand {
+      font-weight: 700;
+      color: white !important;
+    }
+    
+    .nav-link {
+      color: rgba(255, 255, 255, 0.85) !important;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-link:hover {
+      color: white !important;
+      transform: translateY(-2px);
+    }
+    
+    .hero {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      padding: 100px 0;
+      color: white;
+    }
+    
+    .hero h1 {
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    
+    .hero p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+    
+    .btn-primary {
+      background-color: var(--secondary);
+      border-color: var(--secondary);
+      padding: 10px 24px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .feature-box {
+      background: white;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+      height: 100%;
+    }
+    
+    .feature-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: var(--primary);
+    }
+    
+    .report-card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+    }
+    
+    .report-header {
+      background-color: var(--primary);
+      color: white;
+      padding: 20px 30px;
+    }
+    
+    .report-body {
+      padding: 30px;
+    }
+    
+    .form-control, .form-select {
+      padding: 12px;
+      border-radius: 8px;
+    }
+    
+    .form-label {
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+    
+    .statistics {
+      background-color: var(--light);
+      padding: 80px 0;
+    }
+    
+    .stat-card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      padding: 25px;
+      text-align: center;
+    }
+    
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    
+    .stat-label {
+      font-size: 1rem;
+      color: var(--dark);
+      opacity: 0.8;
+    }
+    
+    .footer {
+      background-color: var(--primary-dark);
+      color: white;
+      padding: 60px 0 30px;
+    }
+    
+    .footer h5 {
+      color: white;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    
+    .footer-link {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 10px;
+      transition: all 0.3s ease;
+    }
+    
+    .footer-link:hover {
+      color: white;
+      transform: translateX(5px);
+    }
+    
+    .social-icons a {
+      color: white;
+      font-size: 1.2rem;
+      margin-right: 15px;
+      transition: all 0.3s ease;
+    }
+    
+    .social-icons a:hover {
+      color: var(--success);
+      transform: translateY(-3px);
+    }
+    
+    .copyright {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero {
+        padding: 60px 0;
+        text-align: center;
+      }
+      
+      .hero img {
+        margin-top: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <i class="fas fa-shield-alt me-2"></i>
+          E-Takraar
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#report">Report Incident</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#resources">Resources</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+            <li class="nav-item ms-2">
+              <a class="btn btn-outline-light" href="#login">Login</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>E-Takraar</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <h1>Report Cybercrime & Online Harassment</h1>
+            <p class="mb-4">E-Takraar provides a safe and secure platform to report cyber crimes and online harassment. Our AI-powered system helps classify and route your report to the appropriate authorities.</p>
+            <a href="#report" class="btn btn-primary me-3">Report an Incident</a>
+            <a href="#about" class="btn btn-outline-light">Learn More</a>
+          </div>
+          
+        </div>
+      </div>
+    </section>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+    <!-- Features Section -->
+    <section class="py-5">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="fw-bold">How E-Takraar Helps</h2>
+          <p class="text-muted">Our platform makes reporting and resolving cybercrime incidents easier and more effective.</p>
+        </div>
+        
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="feature-box">
+              <div class="feature-icon">
+                <i class="fas fa-robot"></i>
+              </div>
+              <h4>AI-Powered Classification</h4>
+              <p>Our advanced AI system accurately classifies the type of cybercrime or harassment, ensuring your report is handled appropriately.</p>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <div class="feature-box">
+              <div class="feature-icon">
+                <i class="fas fa-lock"></i>
+              </div>
+              <h4>Secure & Confidential</h4>
+              <p>Your reports and personal information are protected with enterprise-grade security to ensure complete confidentiality.</p>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <div class="feature-box">
+              <div class="feature-icon">
+                <i class="fas fa-chart-line"></i>
+              </div>
+              <h4>Case Tracking</h4>
+              <p>Monitor the progress of your reported incident with our transparent case tracking system.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+    <!-- Report Section -->
+    <section class="py-5 bg-light" id="report">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="fw-bold">Report an Incident</h2>
+          <p class="text-muted">Fill out the form below to report a cybercrime or online harassment incident.</p>
+        </div>
+        
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="report-card">
+              <div class="report-header">
+                <h3 class="m-0">Incident Report Form</h3>
+                <p class="mb-0 mt-2">All fields marked with * are required</p>
+              </div>
+              <div class="report-body">
+                <form>
+                  <div class="row mb-3">
+                    <div class="col-md-6 mb-3 mb-md-0">
+                      <label for="firstName" class="form-label">First Name *</label>
+                      <input type="text" class="form-control" id="firstName" required />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="lastName" class="form-label">Last Name *</label>
+                      <input type="text" class="form-control" id="lastName" required />
+                    </div>
+                  </div>
+                  
+                  <div class="mb-3">
+                    <label for="email" class="form-label">Email Address *</label>
+                    <input type="email" class="form-control" id="email" required />
+                  </div>
+                  
+                  <div class="mb-3">
+                    <label for="phone" class="form-label">Phone Number</label>
+                    <input type="tel" class="form-control" id="phone" />
+                  </div>
+                  
+                  <div class="mb-3">
+                    <label for="incidentType" class="form-label">Incident Type *</label>
+                    <select class="form-select" id="incidentType" required>
+                      <option value="" selected disabled>Select incident type</option>
+                      <option value="phishing">Phishing</option>
+                      <option value="identity_theft">Identity Theft</option>
+                      <option value="harassment">Online Harassment</option>
+                      <option value="cyberbullying">Cyberbullying</option>
+                      <option value="hacking">Account Hacking</option>
+                      <option value="scam">Internet Scam</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                  
+                  <div class="mb-3">
+                    <label for="incidentDate" class="form-label">Date of Incident *</label>
+                    <input type="date" class="form-control" id="incidentDate" required />
+                  </div>
+                  
+                  <div class="mb-3">
+                    <label for="incidentDetails" class="form-label">Incident Details *</label>
+                    <textarea class="form-control" id="incidentDetails" rows="5" placeholder="Please describe what happened in detail. Include any relevant information such as websites, usernames, or methods used." required></textarea>
+                  </div>
+                  
+                  <div class="mb-3">
+                    <label for="evidence" class="form-label">Upload Evidence (screenshots, messages, etc.)</label>
+                    <input type="file" class="form-control" id="evidence" multiple />
+                    <div class="form-text">Max file size: 10MB. Allowed formats: JPG, PNG, PDF, DOC</div>
+                  </div>
+                  
+                  <div class="mb-4 form-check">
+                    <input type="checkbox" class="form-check-input" id="consentCheck" required />
+                    <label class="form-check-label" for="consentCheck">
+                      I consent to E-Takraar processing my information and understand that my report may be shared with relevant authorities *
+                    </label>
+                  </div>
+                  
+                  <div class="d-grid">
+                    <button type="submit" class="btn btn-primary btn-lg">Submit Report</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="statistics">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="fw-bold">Making an Impact</h2>
+          <p class="text-muted">See how E-Takraar is helping combat cybercrime</p>
+        </div>
+        
+        <div class="row g-4">
+          <div class="col-md-3">
+            <div class="stat-card">
+              <div class="stat-number">5,000+</div>
+              <div class="stat-label">Reports Filed</div>
+            </div>
+          </div>
+          
+          <div class="col-md-3">
+            <div class="stat-card">
+              <div class="stat-number">94%</div>
+              <div class="stat-label">Classification Accuracy</div>
+            </div>
+          </div>
+          
+          <div class="col-md-3">
+            <div class="stat-card">
+              <div class="stat-number">48hrs</div>
+              <div class="stat-label">Avg. Response Time</div>
+            </div>
+          </div>
+          
+          <div class="col-md-3">
+            <div class="stat-card">
+              <div class="stat-number">72%</div>
+              <div class="stat-label">Resolution Rate</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-5" id="about">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 mb-4 mb-lg-0">
+            <img src="/api/placeholder/600/400" alt="About E-Takraar" class="img-fluid rounded-3" />
+          </div>
+          <div class="col-lg-6">
+            <h2 class="fw-bold mb-4">About E-Takraar</h2>
+            <p>E-Takraar is a pioneering platform dedicated to combating cybercrime and online harassment through technology-driven solutions. Our name "Takraar" signifies repetition and emphasis, highlighting our commitment to repeatedly address and emphasize the importance of cybersecurity.</p>
+            <p>Founded by a team of cybersecurity experts and data scientists, E-Takraar employs advanced machine learning algorithms to classify, analyze, and process cybercrime reports efficiently.</p>
+            <p>Our mission is to create a safer digital environment by providing an accessible platform for reporting incidents and connecting victims with the appropriate resources and authorities.</p>
+            <a href="#" class="btn btn-primary mt-3">Learn More About Our Mission</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section class="py-5 bg-light" id="resources">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="fw-bold">Resources & Education</h2>
+          <p class="text-muted">Learn how to protect yourself and your loved ones from cyber threats</p>
+        </div>
+        
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="card h-100">
+              <img src="/api/placeholder/400/200" class="card-img-top" alt="Cybersecurity Tips" />
+              <div class="card-body">
+                <h5 class="card-title">Cybersecurity Tips</h5>
+                <p class="card-text">Essential practices to keep your personal information and accounts secure online.</p>
+                <a href="#" class="btn btn-outline-primary">Read More</a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <div class="card h-100">
+              <img src="/api/placeholder/400/200" class="card-img-top" alt="Recognizing Harassment" />
+              <div class="card-body">
+                <h5 class="card-title">Recognizing Online Harassment</h5>
+                <p class="card-text">Learn to identify different forms of online harassment and what actions to take.</p>
+                <a href="#" class="btn btn-outline-primary">Read More</a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <div class="card h-100">
+              <img src="/api/placeholder/400/200" class="card-img-top" alt="Legal Framework" />
+              <div class="card-body">
+                <h5 class="card-title">Legal Resources</h5>
+                <p class="card-text">Information about cybercrime laws and your rights when dealing with digital crimes.</p>
+                <a href="#" class="btn btn-outline-primary">Read More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="text-center mt-4">
+          <a href="#" class="btn btn-primary">View All Resources</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-5" id="contact">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-5 mb-4 mb-lg-0">
+            <h2 class="fw-bold mb-4">Contact Us</h2>
+            <p>Have questions or need assistance with using E-Takraar? Our support team is here to help.</p>
+            
+            <div class="mb-4">
+              <h5 class="fw-bold">General Inquiries</h5>
+              <p><i class="fas fa-envelope me-2 text-primary"></i> info@etakraar.org</p>
+              <p><i class="fas fa-phone me-2 text-primary"></i> +1 (800) 123-4567</p>
+            </div>
+            
+            <div class="mb-4">
+              <h5 class="fw-bold">Emergency Support</h5>
+              <p><i class="fas fa-headset me-2 text-primary"></i> support@etakraar.org</p>
+              <p><i class="fas fa-phone-alt me-2 text-primary"></i> +1 (800) 999-8888</p>
+            </div>
+            
+            <div class="mb-4">
+              <h5 class="fw-bold">Office Location</h5>
+              <p><i class="fas fa-map-marker-alt me-2 text-primary"></i> 123 Cyber Security Ave, Suite 400<br>Tech City, TC 10101</p>
+            </div>
+            
+            <div class="social-icons">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+          
+          <div class="col-lg-7">
+            <div class="card shadow-sm">
+              <div class="card-body p-4">
+                <h4 class="card-title mb-4">Send Us a Message</h4>
+                <form>
+                  <div class="row mb-3">
+                    <div class="col-md-6 mb-3 mb-md-0">
+                      <label for="contactName" class="form-label">Your Name</label>
+                      <input type="text" class="form-control" id="contactName" required />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="contactEmail" class="form-label">Email Address</label>
+                      <input type="email" class="form-control" id="contactEmail" required />
+                    </div>
+                  </div>
+                  
+                  <div class="mb-3">
+                    <label for="contactSubject" class="form-label">Subject</label>
+                    <input type="text" class="form-control" id="contactSubject" required />
+                  </div>
+                  
+                  <div class="mb-3">
+                    <label for="contactMessage" class="form-label">Message</label>
+                    <textarea class="form-control" id="contactMessage" rows="4" required></textarea>
+                  </div>
+                  
+                  <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-lg-4">
+            <h5>E-Takraar</h5>
+            <p>A platform dedicated to combating cybercrime and online harassment through technology-driven solutions.</p>
+            <div class="social-icons mt-3">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+          
+          <div class="col-lg-2 col-md-4">
+            <h5>Quick Links</h5>
+            <a href="#home" class="footer-link">Home</a>
+            <a href="#report" class="footer-link">Report Incident</a>
+            <a href="#about" class="footer-link">About Us</a>
+            <a href="#resources" class="footer-link">Resources</a>
+            <a href="#contact" class="footer-link">Contact</a>
+          </div>
+          
+          <div class="col-lg-3 col-md-4">
+            <h5>Resources</h5>
+            <a href="#" class="footer-link">Cybersecurity Tips</a>
+            <a href="#" class="footer-link">Online Harassment Guide</a>
+            <a href="#" class="footer-link">Legal Resources</a>
+            <a href="#" class="footer-link">FAQ</a>
+            <a href="#" class="footer-link">Blog</a>
+          </div>
+          
+          <div class="col-lg-3 col-md-4">
+            <h5>Legal</h5>
+            <a href="#" class="footer-link">Terms of Service</a>
+            <a href="#" class="footer-link">Privacy Policy</a>
+            <a href="#" class="footer-link">Cookie Policy</a>
+            <a href="#" class="footer-link">GDPR Compliance</a>
+            <a href="#" class="footer-link">Data Protection</a>
+          </div>
+        </div>
+        
+        <div class="copyright text-center">
+          <p>&copy; 2025 E-Takraar. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Form submission handling
+    document.addEventListener('DOMContentLoaded', function() {
+      const reportForm = document.querySelector('#report form');
+      const contactForm = document.querySelector('#contact form');
+      
+      if (reportForm) {
+        reportForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          // Here you would normally send the form data to your backend
+          // For demonstration, we'll just show a success message
+          
+          alert('Thank you for your report. Our team will review it and contact you within 48 hours.');
+          reportForm.reset();
+        });
+      }
+      
+      if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          // Here you would normally send the form data to your backend
+          // For demonstration, we'll just show a success message
+          
+          alert('Thank you for your message. We will get back to you soon.');
+          contactForm.reset();
+        });
+      }
+      
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 70,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+    });
+  </script>
+</body>
 </html>
