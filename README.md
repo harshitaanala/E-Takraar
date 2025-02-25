@@ -21,6 +21,12 @@ This project aims to provide a safe and inclusive online environment by incorpor
 - Complaint resolution & updates
 
 ## Screenshots
+![etakraar](https://github.com/user-attachments/assets/fd50cd0b-fac2-4017-aa89-df73b9b587c8)
+![GUI2](https://github.com/user-attachments/assets/bc87b6bf-73cd-4f54-89fe-0f90f627df9d)
+![GUI3](https://github.com/user-attachments/assets/ce1c749e-5603-4061-8160-1553f03bb697)
+
+
+
 
 ## Installation
 
